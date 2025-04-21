@@ -1,0 +1,99 @@
+# import External json file and sync the it 
+
+// import data from '../Sample.json'
+// const { hits } = data; // correctly destructuring hits
+// console.log(hits); // logging the hits array
+// console.log(data) // logging the hits array to the console
+{hits.map((item) => ( key={item.id}))}
+{data.hits.map((item) => ( key={item.id}))}
+
+# import in the file sync it 
+1)class based components
+constructure(props) {
+  super(props);
+  this.state ={
+    Picture:[]
+  },
+  }
+
+  componentdidMount() {
+    const samplePicture = [ {
+      /// json data
+        },]
+    this.setState({Picture: samplePicture});
+    console.log(this.webformatURL);
+  }
+  render(){
+    const {Picture} = this.state; 
+    Picture.map((key,index)=>{})
+     }
+
+2)function based components
+import React, { useState, useEffect } from 'react';
+const [data, setData] = useState([]);
+ useEffect(() => {
+    const samplePicture = [
+      // your samplePicture array here
+    ];
+    setData(samplePicture);
+    console.log(props.webformatURL);
+  }, []);
+  {data.map((item) => (
+    <..../>
+  ))}
+
+
+
+# import in the apikey file sync it 
+1)function based components
+const [data, setData] = useState([]);
+const fetchData = async () => {
+    const apiKey = import.meta.env.VITE_REACT_APP_API_URL;
+    const apiUrl = `https://pixabay.com/api/?key=${apiKey}&image_type=photo&pretty=true&per_page=20`;
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const jsonData = await response.json();
+      setData(jsonData.hits);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // just call fetchData, no weird array stuff
+  }, []); // add props.searchQuery to dependencies!
+
+{data.map((item) => (
+        <ImageItems
+          key={item.id}/>
+))}
+
+2)class based components
+ constructor(props) {
+    super(props);
+    this.state = {
+      Picture: [],
+    };
+  }
+
+  async componentDidMount() {
+    const apiKey = import.meta.env.VITE_REACT_APP_API_URL;
+    const apiUrl = `https://pixabay.com/api/?key=${apiKey}&image_type=photo&pretty=true&per_page=20`;
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const jsonData = await response.json();
+      this.setState({ Picture: jsonData.hits });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+const { Picture } = this.state;
+{Picture.map((item) => (
+          <ImageItems
