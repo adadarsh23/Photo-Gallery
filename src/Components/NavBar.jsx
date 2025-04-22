@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import Footer from './Footer';
 
 function NavBar({ category }) {
+  
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(true);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
@@ -84,31 +85,6 @@ function NavBar({ category }) {
                 <li><Link to="/nature" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Nature</Link></li>
                 <li><Link to="/car" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Car</Link></li>
                 <li><Link to="/bike" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Bike</Link></li>
-                <li><Link to="/mountain" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mountain</Link></li>
-                <li><Link to="/river" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">River</Link></li>
-                <li><Link to="/sea" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Sea</Link></li>
-                <li><Link to="/sky" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Sky</Link></li>
-                <li><Link to="/forest" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Forest</Link></li>
-                <li><Link to="/city" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">City</Link></li>
-                <li><Link to="/people" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">People</Link></li>
-                <li><Link to="/animals" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Animals</Link></li>
-                <li><Link to="/food" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Food</Link></li>
-                <li><Link to="/travel" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Travel</Link></li>
-                <li><Link to="/sports" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Sports</Link></li>
-                <li><Link to="/music" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Music</Link></li>
-                <li><Link to="/art" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Art</Link></li>
-                <li><Link to="/technology" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Technology</Link></li>
-                <li><Link to="/fashion" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Fashion</Link></li>
-                <li><Link to="/architecture" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Architecture</Link></li>
-                <li><Link to="/history" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">History</Link></li>
-                <li><Link to="/space" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Space</Link></li>
-                <li><Link to="/abstract" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Abstract</Link></li>
-                <li><Link to="/blackandwhite" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Black and White</Link></li>
-                <li><Link to="/vintage" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Vintage</Link></li>
-                <li><Link to="/retro" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Retro</Link></li>
-                <li><Link to="/minimalist" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Minimalist</Link></li>
-                <li><Link to="/surreal" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Surreal</Link></li>
-                <li><Link to="/fantasy" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Fantasy</Link></li>
                 {/* Add more categories as needed */}
               </ul>
             </li>
@@ -166,12 +142,12 @@ function NavBar({ category }) {
       {/* Main content */}
       <div className="mt-14 p-4 sm:ml-64 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <a href='/' className="flex items-center justify-center mb-4">
-        <h1 className="text-4xl text-center text-neutral-50 font-extrabold mb-6 tracking-wide drop-shadow-lg uppercase font-serif underline decoration-4 underline-offset-8 transform transition-all duration-300 hover:scale-110">
+          <h1 className="text-4xl text-center text-neutral-50 font-extrabold mb-6 tracking-wide drop-shadow-lg uppercase font-serif underline decoration-4 underline-offset-8 transform transition-all duration-300 hover:scale-110">
             Welcome to the Photo Gallery
           </h1>
         </a>
         <Image category={category} />
-        <Footer/>
+        <Footer />
       </div>
     </>
   );

@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import back1 from '../assets/back1.jpg';
+import back2 from '../assets/back2.jpg';
 
 const AboutPage = () => {
   const navigate = useNavigate();
@@ -8,7 +10,7 @@ const AboutPage = () => {
   return (
     <div 
       className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center p-6 sm:p-8 dark:bg-gray-900"
-      style={{ backgroundImage: `url('https://pixabay.com/get/g0a52364e10547dbcba47a0f9c706c86d65780e5a1e62f27ea3126d13eea4275411325c43d4183deb2b54f3e68b80c93b30cdfdce2afd7f2b1fd22992c0fc05a6_640.jpg')` }}
+      style={{ backgroundImage: `url(${back1})` }}
     >
       <motion.div 
         initial={{ opacity: 0, y: 50 }} 
@@ -30,7 +32,7 @@ const AboutPage = () => {
           className="overflow-hidden rounded-xl shadow-md"
         >
           <img
-            src="https://pixabay.com/get/g17590def7538ebacb31e6d397f601f04df253852e3a7821bffa369000c1ebc10da245470407b6289ee7a5d148df69124a536d6e349bf335500d2a1de42194788_640.jpg"
+            src={back2}
             alt="Gallery"
             className="w-full h-64 sm:h-96 object-cover hover:scale-105 transition-transform duration-500"
           />

@@ -32,13 +32,18 @@ export default function ImageItems(props) {
 
   // Trigger the increment animation on hover
   useEffect(() => {
+    setViewsCount(props.views);
+    setLikesCount(props.likes);
+    setCommentsCount(props.comments);
+  }, [props.views, props.likes, props.comments]);
+  
+  useEffect(() => {
     if (isHovered) {
       incrementCount(props.views, setViewsCount);
       incrementCount(props.likes, setLikesCount);
       incrementCount(props.comments, setCommentsCount);
     }
-  }, [isHovered, props.views, props.likes, props.comments]); // Trigger when hovered
-
+  }, [isHovered]);
   const handleDownload = async () => {
     const response = await fetch(props.webformatURL);
     const blob = await response.blob();

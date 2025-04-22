@@ -7,52 +7,68 @@ export default function Image({ category }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = async (query, page) => {
+  const fetchImages = async () => {
     const apiKey = import.meta.env.VITE_REACT_APP_API_URL;
     const searchTerm = category || query || 'photo';
-    const apiUrl = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(searchTerm)}&image_type=photo&pretty=true&per_page=21&page=${page}`;
+    const perPage = 21;
+    const apiUrl = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(searchTerm)}&image_type=photo&pretty=true&per_page=${perPage}&page=${page}`;
 
     try {
       setLoading(true);
       const response = await fetch(apiUrl);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const jsonData = await response.json();
-      setData(jsonData.hits);
+      if (!response.ok) throw new Error('Failed to fetch images');
+      const data = await response.json();
+      setData(data.hits);
+      setTotalPages(Math.ceil(data.totalHits / perPage)); // Calculate total pages
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching images:', error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchData(query, page);
-    // eslint-disable-next-line
+    fetchImages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, query, page]);
 
-  const handleSubmit = (e) => {
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
     setPage(1);
     setQuery(searchQuery);
   };
 
-  const handleNext = () => setPage((prev) => prev + 1);
-  const handlePrev = () => setPage((prev) => Math.max(prev - 1, 1));
+  const handlePageClick = (pageNumber) => {
+    setPage(pageNumber);
+  };
+
+  const pageNumbers = [];
+  const visiblePages = 5; // show 5 page buttons maximum
+  let startPage = Math.max(1, page - Math.floor(visiblePages / 2));
+  let endPage = startPage + visiblePages - 1;
+
+  if (endPage > totalPages) {
+    endPage = totalPages;
+    startPage = Math.max(1, endPage - visiblePages + 1);
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <div className="px-4 py-6">
-      {/* Search Form */}
-      <form onSubmit={handleSubmit} className="flex justify-center mb-8">
+      {/* Search Bar */}
+      <form onSubmit={handleSearchSubmit} className="flex justify-center mb-8">
         <input
           type="text"
           placeholder="Search for images..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="px-4 py-2 w-full text-white max-w-md rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="px-4 py-2 w-full max-w-md rounded-l-md border border-gray-300 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <button
           type="submit"
@@ -62,18 +78,19 @@ export default function Image({ category }) {
         </button>
       </form>
 
-      {/* Image Grid */}
+      {/* Images Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-white">
         {loading ? (
-          <div className="col-span-full text-center"><Loading /></div>
+          <div className="col-span-full text-center">
+            <Loading />
+          </div>
         ) : data.length > 0 ? (
           data.map((item) => (
             <div
               key={item.id}
-              className="transform transition duration-500 hover:scale-110 hover:rotate-3d hover:shadow-xl relative"
+              className="transform transition duration-500 hover:scale-110 hover:shadow-xl relative"
             >
               <ImageItems
-                key={item.id}
                 webformatURL={item.webformatURL}
                 views={item.views}
                 likes={item.likes}
@@ -92,28 +109,50 @@ export default function Image({ category }) {
               alt="No Images Found"
               className="w-60 h-60 object-contain mb-4"
             />
-            <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-200 mb-2">No Images Found</h2>
-            <p className="text-gray-500 dark:text-gray-400">Try searching for something else!</p>
+            <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-200 mb-2">
+              No Images Found
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400">
+              Try searching for something else!
+            </p>
           </div>
         )}
       </div>
 
-      {/* Pagination Buttons */}
-      <div className="flex justify-center gap-4 mt-8">
-        <button
-          onClick={handlePrev}
-          disabled={page === 1}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <button
-          onClick={handleNext}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Next
-        </button>
-      </div>
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
+          <button
+            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            disabled={page === 1}
+            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+          >
+            Previous
+          </button>
+
+          {pageNumbers.map((pageNum) => (
+            <button
+              key={pageNum}
+              onClick={() => handlePageClick(pageNum)}
+              className={`px-3 py-1 rounded ${
+                page === pageNum
+                  ? 'bg-blue-700 text-white'
+                  : 'bg-blue-500 text-white hover:bg-blue-600'
+              }`}
+            >
+              {pageNum}
+            </button>
+          ))}
+
+          <button
+            onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={page === totalPages}
+            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
