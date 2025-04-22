@@ -5,14 +5,14 @@ import Inbox from './Components/Inbox.jsx'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import UserForm from './Components/UserForm.jsx'
 import Sign from './Components/Sign.jsx'
-import LoginSubmit from './Components/LoginSubmit.jsx'
+import LoginSubmit from './Components/LoginSubmit.jsx';
 import Login from './Components/Login.jsx';
 import SignInSubmit from './Components/SignInSubmit.jsx'
 import UserSubmit from './Components/UserSubmit.jsx'
 import AboutPage from './Components/AboutPage.jsx'
-import CursorTrail from './Components/CursorTrail'; // 
+import CursorTrail from './Components/CursorTrail.jsx';
 import PrivacyPolicy from './components/PrivacyPolicy.jsx';
-import Licenses from './Components/Licenses.jsx'
+import Licenses from './Components/Licenses.jsx';
 import ForgotPassword from "./Components/ForgotPassword.jsx";
 
 function App() {
