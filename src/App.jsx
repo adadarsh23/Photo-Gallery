@@ -1,4 +1,5 @@
 // import { useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component';
 import NavBar from './Components/NavBar'
 import NoPage from './Components/ErrorSection7.jsx'
 import Inbox from './Components/Inbox.jsx'

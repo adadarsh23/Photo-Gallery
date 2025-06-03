@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import ImageItems from './ImageItems';
 import Loading from './Loading.jsx';
 
