@@ -12,6 +12,9 @@ export default function ImageItems(props) {
   const [likesCount, setLikesCount] = useState(0);
   const [commentsCount, setCommentsCount] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const handleViewImage = () => {
+    window.open(props.webformatURL, '_blank');
+  };
 
   useEffect(() => {
     setIsLoaded(true);
@@ -65,10 +68,6 @@ export default function ImageItems(props) {
     }
   };
 
-  const handleViewImage = () => {
-    window.open(props.webformatURL, '_blank');
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -89,7 +88,6 @@ export default function ImageItems(props) {
           transition: 'filter 0.3s',
           filter: isHovered ? 'brightness(0.5)' : 'brightness(1)'
         }}
-        onClick={handleViewImage}
       >
         {/* Overlay with details */}
         {isHovered && (
@@ -100,6 +98,7 @@ export default function ImageItems(props) {
             className="absolute inset-0 flex flex-col justify-between p-4 text-white z-10"
             style={{ background: 'rgba(0,0,0,0.35)' }}
             onClick={e => e.stopPropagation()}
+            onClick={handleViewImage}
           >
             {/* Stats */}
             <div className="flex justify-between text-sm mb-2">
