@@ -13,7 +13,7 @@ const Login = lazy(() => import('./Components/Login.jsx'));
 const SignInSubmit = lazy(() => import('./Components/SignInSubmit.jsx'));
 const UserSubmit = lazy(() => import('./Components/UserSubmit.jsx'));
 const AboutPage = lazy(() => import('./Components/AboutPage.jsx'));
-const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy.jsx'));
+const PrivacyPolicy = lazy(() => import('./Components/PrivacyPolicy.jsx'));
 const Licenses = lazy(() => import('./Components/Licenses.jsx'));
 const ForgotPassword = lazy(() => import('./Components/ForgotPassword.jsx'));
 
