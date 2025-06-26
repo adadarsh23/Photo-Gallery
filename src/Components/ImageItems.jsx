@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { FaEye } from "react-icons/fa";
 import { FcLike, FcComments } from "react-icons/fc";
 import { IoMdDownload } from "react-icons/io";
